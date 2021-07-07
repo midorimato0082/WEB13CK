@@ -128,10 +128,37 @@ class HomeController extends Controller
 
         // Show bài viết gần đây nhất
         $lastest_review = Review::where('status', 1)->orderBy('created_at', 'DESC')->take(8)->get();
-        // $all_review = Review::orderBy('review_id', 'DESC')->where('status', 1)->paginate(10);
 
-        // return view('pages.category', compact('all_review_category', 'all_category', 'category_name', 'all_review'));
         return view('pages.location', compact('all_category', 'all_location', 'all_review_bac', 'all_review_nam', 'location_slug', 'location_name', 'all_review_location', 'lastest_review'));
+    }
+
+    public function show_region_page($region_slug){
+        //Lấy cho header
+        $all_category = Category::where('status', 1)->orderBy('category_name', 'ASC')->take(5)->get();
+        $all_location = Location::where('status', 1)->orderBy('location_name', 'ASC')->take(20)->get();
+
+        //Lấy cho footer
+        $all_review_bac = DB::table('tbl_review')->join('tbl_location', 'tbl_review.location_id', '=', 'tbl_location.location_id')
+        ->join('tbl_region', 'tbl_location.region_id', '=', 'tbl_region.region_id')
+        ->where('tbl_review.status', '=', 1)
+        ->where('tbl_region.region_name', '=',"Miền Bắc")
+        ->take(4)->get();
+        $all_review_nam = DB::table('tbl_review')->join('tbl_location', 'tbl_review.location_id', '=', 'tbl_location.location_id')
+        ->join('tbl_region', 'tbl_location.region_id', '=', 'tbl_region.region_id')
+        ->where('tbl_review.status', '=', 1)
+        ->where('tbl_region.region_name', '=',"Miền Nam")
+        ->take(4)->get();
+
+        $region = Region::where('region_slug', $region_slug)->take(1)->get();
+
+        foreach($region as $key => $reg){
+            $region_name = $reg->region_name;
+        }
+        
+        // Show bài viết gần đây nhất
+        $lastest_review = Review::where('status', 1)->orderBy('created_at', 'DESC')->take(8)->get();
+
+        return view('pages.region', compact('all_category', 'all_location', 'all_review_bac', 'all_review_nam', 'region_slug', 'region_name', 'lastest_review'));
     }
 
     public function show_review_page($review_slug){
@@ -163,9 +190,7 @@ class HomeController extends Controller
 
         // Show bài viết gần đây nhất
         $lastest_review = Review::where('status', 1)->orderBy('created_at', 'DESC')->take(8)->get();
-        // $all_review = Review::orderBy('review_id', 'DESC')->where('status', 1)->paginate(10);
 
-        // return view('pages.category', compact('all_review_category', 'all_category', 'category_name', 'all_review'));
         return view('pages.location', compact('all_category', 'all_location', 'all_review_bac', 'all_review_nam', 'review_name', 'all_review_location', 'lastest_review'));
     }
 

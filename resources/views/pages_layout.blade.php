@@ -141,19 +141,21 @@
                 </div>
 
                 <div class="col-md-4 col-lg-4 col-xl-4">
-                    <h3 class="mb-5">Home stay Miền Bắc</h3>
+                    <a class="review-title-footer" href="{{ URL::to('/region/'."mien-bac") }}"><h3 class="mb-5">Home stay Miền Bắc</h3></a>
                     @foreach ($all_review_bac as $key => $review_bac)
                         <div class="row footer-item">
                             <div class="col-md-3">
+                                <a href="{{ URL::to('/review/' . $review_bac->review_title) }}">
                                 @if ($review_bac->review_images == 'no_image23.png')
                                     <img src="../server/images/no_image23.png" height="100" width="100">
                                 @else
                                     <img src="../uploads/ReviewImage/{{ explode('|', $review_bac->review_images)[0] }}"
                                         height="100" width="100">
                                 @endif
+                                </a>
                             </div>
                             <div class="col-md-9 col-lg-9 col-xl-9">
-                                <h5>{{ $review_bac->review_title }}</h5>
+                                <a class="review-title-footer" href="{{ URL::to('/review/' . $review_bac->review_title) }}"><h5>{{ $review_bac->review_title }}</h5></a>
                                 <p>{{ $review_bac->created_at }}</p>
                             </div>
                         </div>
@@ -161,19 +163,21 @@
                 </div>
 
                 <div class="col-md-4 col-lg-4 col-xl-4">
-                    <h3 class="mb-5">Home stay Miền Nam</h3>
+                    <a class="review-title-footer" href="{{ URL::to('/region/'."mien-nam") }}"><h3 class="mb-5">Home stay Miền Nam</h3></a>
                     @foreach ($all_review_nam as $key => $review_nam)
                         <div class="row footer-item">
                             <div class="col-md-3">
+                                <a href="{{ URL::to('/review/' . $review_nam->review_title) }}">
                                 @if ($review_nam->review_images == 'no_image23.png')
                                     <img src="../server/images/no_image23.png" height="100" width="100">
                                 @else
                                     <img src="../uploads/ReviewImage/{{ explode('|', $review_nam->review_images)[0] }}"
                                         height="100" width="100">
                                 @endif
+                                </a>
                             </div>
                             <div class="col-md-9 col-lg-9 col-xl-9">
-                                <h5>{{ $review_nam->review_title }}</h5>
+                                <a class="review-title-footer" href="{{ URL::to('/review/' . $review_nam->review_title) }}"><h5>{{ $review_nam->review_title }}</h5></a>
                                 <p>{{ $review_nam->created_at }}</p>
                             </div>
                         </div>
