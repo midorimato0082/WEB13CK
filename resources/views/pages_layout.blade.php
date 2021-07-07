@@ -112,7 +112,7 @@
                                          ?>">
                                         </a>
                                     </li>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <div class="" aria-labelledby="dropdownMenuButton">
                                         @if($avatar)
                                         <a class="dropdown-item" href="{{route('logout')}}">Log out</a>
                                         @foreach($user as $key =>$value)
@@ -121,7 +121,9 @@
                                         <a class="dropdown-item" href="{{url('profile/'.$value->customer_id)}}">Profile</a>
                                       </div>
                                       @else
-                                        <a class="dropdown-item" href="{{route('login')}}">Đăng nhập</a>
+                                        <a style="margin: 0;
+                                        padding: 0;
+                                        border: 0;" class="dropdown-item btn" href="{{route('login')}}">Đăng nhập</a>
                                       
                                     @endif
                                 </button>
