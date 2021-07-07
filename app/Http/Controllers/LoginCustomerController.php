@@ -79,17 +79,26 @@ class LoginCustomerController extends Controller
         if($data['customer_password'] == $data['customer_passwordAgain']){
             
             $user = new Customer();
-            $image = $data['customer_avatar'];
-            $extention = $image->getClientOriginalExtension();//Lấy đuôi mở rộng của hình ảnh
-            $name = time().'_'.$image->getClientOriginalName();
-            Storage::disk('public/')->put($name,File::get($image));
+            // $image = $data['customer_avatar'];
+            // $extention = $image->getClientOriginalExtension();//Lấy đuôi mở rộng của hình ảnh
+            // $name = time().'_'.$image->getClientOriginalName();
+            // Storage::disk('public/')->put($name,File::get($image));
+            $get_image = $request->file('customer_avatar');
+            if ($get_image) {
+                $get_name_image = $get_image->getClientOriginalName();
+                $name_image = current(explode('.', $get_name_image));
+                $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
+                $get_image->move('uploads/CustomerAvatar', $new_image);
+                $user->customer_avatar = $new_image;
+            } else {
+                $user->customer_avatar = "no_avatar35.png";
+            }
             
             $user->customer_last_name = $request->customer_last_name;
             $user->customer_first_name = $request->customer_first_name;
             $user->customer_email = $request->customer_email;
             $user->customer_avatar = $request->customer_avatar;
             $user->customer_password =md5($request->customer_password);
-            $user->user_avatar = $name;
             $user->save();
             return redirect('dangky')->with('success','Đăng ký thành công');
             

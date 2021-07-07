@@ -60,8 +60,8 @@
             Session::put('message', null);
             }
             ?>
-            <form action="{{route('dangkycus')}}" method="post">
-                {{ csrf_field() }}
+            <form action="{{route('dangkycus')}}" method="post" enctype="multipart/form-data">
+                @csrf
                 @foreach ($errors->all() as $val)
                     <ul>
                         <li>{{ $val }}</li>
