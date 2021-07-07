@@ -42,6 +42,7 @@ Route::get('/delete-customer/{customer_id}', 'CustomerController@delete_customer
 //Profile
 Route::get('/profile/{id}', 'CustomerController@profile')->name('profile');
 Route::post('/changeprofile/{id}', 'CustomerController@postprofile')->name('changepro');
+
 //Location
 Route::get('/add-location', 'LocationController@add_location');
 Route::post('/save-location', 'LocationController@save_location');

@@ -128,7 +128,9 @@ class CustomerController extends Controller
         Session::put('message', 'Xóa tài khoản khách hàng thành công.');
         return redirect()->back();
     }
+
     public function profile($id){
+
         $cus = Customer::find($id);
         $user = Customer::all();
         $all_category = Category::where('status', 1)->orderBy('category_name', 'ASC')->take(5)->get();
@@ -147,6 +149,7 @@ class CustomerController extends Controller
 
         return view('pages.profile', compact('all_category', 'all_location', 'all_review_bac', 'all_review_nam','cus','user'));
     }
+
     public function postprofile(Request $request,$id){
         $cus = Customer::find($id);
         $user = Customer::all();
@@ -162,10 +165,8 @@ class CustomerController extends Controller
         ->where('tbl_review.status', '=', 1)
         ->where('tbl_region.region_name', '=',"Miền Nam")
         ->take(4)->get();
-        $this->AuthLogin();
 
         $data = $request->all();
-
 
         $cus->customer_last_name = $data['customer_last_name'];
         $cus->customer_first_name = $data['customer_first_name'];
@@ -191,7 +192,7 @@ class CustomerController extends Controller
         }
         $cus->save();
         Session::put('message', 'Cập nhật tài khoản khách hàng thành công.');
-        return redirect('all-customer');
+        return redirect()->back;
         
     }
     // public function changeprofile(Request $request,$id){
