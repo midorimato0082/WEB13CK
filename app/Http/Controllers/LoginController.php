@@ -40,7 +40,7 @@ class LoginController extends Controller
         }
     }
 
-    public function logout(){
+    public function logout_admin(){
         $this->AuthLogin();
         Session::put('admin_first_name', null);
         Session::put('admin_id', null);

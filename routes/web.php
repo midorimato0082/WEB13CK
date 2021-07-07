@@ -20,7 +20,7 @@ Route::get('/trang-chu', 'HomeController@index');
 Route::get('/admin', 'LoginController@index');
 Route::get('/dashboard', 'LoginController@show_dashboard');
 Route::post('/admin-dashboard', 'LoginController@dashboard');
-Route::get('/logout', 'LoginController@logout');
+Route::get('/logout-admin', 'LoginController@logout_admin');
 
 //Admin
 Route::get('/add-admin', 'AdminController@add_admin');
@@ -75,7 +75,7 @@ Route::get('/delete-review-image/{review_id}', 'ReviewController@delete_review')
 //Customer Login
 Route::get('/login', 'LoginCustomerController@index');
 Route::post('/pagehome', 'LoginCustomerController@pagehome');
-Route::get('/logout', 'LoginCustomerController@logout');
+Route::get('/logout-customer', 'LoginCustomerController@logout_customer');
 
 //Page Location
 Route::get('/location/{location_slug}', 'HomeController@show_location_page');

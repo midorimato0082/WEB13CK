@@ -24,6 +24,15 @@ class HomeController extends Controller
         return view('errors.404');
     }
 
+    public function logout_customer(){
+        $this->AuthLogin();
+        Session::put('customer_first_name', null);
+        Session::put('customer_id', null);
+        Session::put('customer_avatar', null);
+        return Redirect::to('/login');
+    }
+
+
     public function index() {
         //Lấy cho header
         $all_category = Category::where('status', 1)->orderBy('category_name', 'ASC')->take(5)->get();

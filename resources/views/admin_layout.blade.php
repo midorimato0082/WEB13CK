@@ -115,7 +115,7 @@
                     <!-- /menu footer buttons -->
                     <div class="sidebar-footer hidden-small">
                         <a data-toggle="tooltip" data-placement="top" title="Logout"
-                            href="{{ URL::to('/logout') }}">
+                            href="{{ URL::to('/logout-admin') }}">
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                         </a>
                     </div>
@@ -152,7 +152,7 @@
                                 <div class="dropdown-menu dropdown-usermenu pull-right"
                                     aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="javascript:;">Hồ sơ</a>
-                                    <a class="dropdown-item" href="{{ URL::to('/logout') }}"><i
+                                    <a class="dropdown-item" href="{{ URL::to('/logout-admin') }}"><i
                                             class="fa fa-sign-out pull-right"></i>Đăng xuất</a>
                                 </div>
                             </li>

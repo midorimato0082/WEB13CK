@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th7 07, 2021 lúc 07:31 AM
+-- Thời gian đã tạo: Th7 07, 2021 lúc 08:00 AM
 -- Phiên bản máy phục vụ: 5.7.31
 -- Phiên bản PHP: 7.3.21
 
@@ -24,6 +24,142 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `tbl_admin`
+--
+
+DROP TABLE IF EXISTS `tbl_admin`;
+CREATE TABLE IF NOT EXISTS `tbl_admin` (
+  `admin_id` int(10) NOT NULL AUTO_INCREMENT,
+  `admin_last_name` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `admin_first_name` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `admin_email` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `admin_password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `admin_phone` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `admin_avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`admin_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_admin`
+--
+
+INSERT INTO `tbl_admin` (`admin_id`, `admin_last_name`, `admin_first_name`, `admin_email`, `admin_password`, `admin_phone`, `admin_avatar`, `created_at`, `updated_at`) VALUES
+(1, 'Nguyễn Thị Bích', 'Phượng', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '0123456789', 'FB_IMG_158988859296697.jpg', '2021-07-06 08:04:03', '2021-07-06 08:04:03'),
+(2, 'abc', 'dvs', 'abc', 'e10adc3949ba59abbe56e057f20f883e', NULL, '16.jpg', '2021-07-07 00:12:36', '2021-07-07 00:12:36');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_category`
+--
+
+DROP TABLE IF EXISTS `tbl_category`;
+CREATE TABLE IF NOT EXISTS `tbl_category` (
+  `category_id` int(10) NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `category_slug` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_category`
+--
+
+INSERT INTO `tbl_category` (`category_id`, `category_name`, `category_slug`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Homestay', 'homestay', 1, '2021-07-06 08:09:07', '2021-07-06 08:09:07'),
+(2, 'Khách sạn', 'khach-san', 1, '2021-07-06 08:09:13', '2021-07-06 08:09:13'),
+(3, 'Resort', 'resort', 1, '2021-07-06 08:09:21', '2021-07-06 08:09:21'),
+(4, 'Tin tức', 'tin-tuc', 1, '2021-07-06 08:09:26', '2021-07-06 08:09:26');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_customer`
+--
+
+DROP TABLE IF EXISTS `tbl_customer`;
+CREATE TABLE IF NOT EXISTS `tbl_customer` (
+  `customer_id` int(10) NOT NULL AUTO_INCREMENT,
+  `customer_last_name` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `customer_first_name` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `customer_email` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `customer_password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `customer_avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`customer_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_customer`
+--
+
+INSERT INTO `tbl_customer` (`customer_id`, `customer_last_name`, `customer_first_name`, `customer_email`, `customer_password`, `customer_avatar`, `created_at`, `updated_at`) VALUES
+(1, 'Vương Tuấn', 'Khải', 'customer', 'e10adc3949ba59abbe56e057f20f883e', '96129013_304051853918504_3171417397693251584_n19.jpg', NULL, NULL),
+(2, 'Nguyễn', 'A', 'a', 'e10adc3949ba59abbe56e057f20f883e', 'no_avatar35.png', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_location`
+--
+
+DROP TABLE IF EXISTS `tbl_location`;
+CREATE TABLE IF NOT EXISTS `tbl_location` (
+  `location_id` int(10) NOT NULL AUTO_INCREMENT,
+  `location_name` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `location_slug` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `region_id` int(10) DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`location_id`),
+  KEY `fk_location` (`region_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_location`
+--
+
+INSERT INTO `tbl_location` (`location_id`, `location_name`, `location_slug`, `region_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Khánh Hòa', 'khanh-hoa', 1, 1, '2021-07-06 08:08:12', '2021-07-06 08:08:12'),
+(2, 'Đà Lạt', 'da-lat', 3, 1, '2021-07-06 08:08:21', '2021-07-06 08:08:21'),
+(3, 'Đà Nẵng', 'da-nang', 1, 1, '2021-07-06 08:08:32', '2021-07-06 08:08:32'),
+(4, 'Cà Mau', 'ca-mau', 2, 1, '2021-07-06 08:08:39', '2021-07-06 08:08:39'),
+(5, 'Phú Yên', 'phu-yen', 3, 0, '2021-07-06 08:08:50', '2021-07-06 08:08:50');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_region`
+--
+
+DROP TABLE IF EXISTS `tbl_region`;
+CREATE TABLE IF NOT EXISTS `tbl_region` (
+  `region_id` int(10) NOT NULL AUTO_INCREMENT,
+  `region_name` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `region_slug` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
+  PRIMARY KEY (`region_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_region`
+--
+
+INSERT INTO `tbl_region` (`region_id`, `region_name`, `region_slug`, `status`) VALUES
+(1, 'Miền Bắc', 'mien-bac', 1),
+(2, 'Miền Nam', 'mien-nam', 1),
+(3, 'Miền Trung', 'mien-trung', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `tbl_review`
 --
 
@@ -31,7 +167,7 @@ DROP TABLE IF EXISTS `tbl_review`;
 CREATE TABLE IF NOT EXISTS `tbl_review` (
   `review_id` int(10) NOT NULL AUTO_INCREMENT,
   `review_title` tinytext COLLATE utf8_unicode_ci,
-  `review_slug` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `review_slug` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `review_desc` text COLLATE utf8_unicode_ci,
   `review_content` text COLLATE utf8_unicode_ci,
   `review_images` text COLLATE utf8_unicode_ci,
