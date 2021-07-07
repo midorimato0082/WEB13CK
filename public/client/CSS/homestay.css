@@ -6,6 +6,7 @@
     box-sizing: border-box;
     font-size: 16px;
 }
+
 body {
     background-image: linear-gradient(
         185deg,
@@ -19,15 +20,45 @@ body {
     max-width: 1440px;
 }
 
+/* Breadcrumn */
 .breadcrumb {
     background-color: black;
     color: white;
     font-weight: bolder;
+} 
+/* End Breadcrumn */
+
+/* Footer  */
+a.review-title-footer{
+    font-weight: bold;
+    color: white;
+} 
+a.review-title-footer :hover {
+    font-weight: bold;
+    color: #f68a39;
 }
 
+/* End Footer  */
+
+/* Format sub page */
 a.location-tag :hover{
     font-weight: bold;
 }
+
+a.category-tag :hover{
+    font-weight: bold;
+}
+
+a.review-title {
+    color: black;
+}
+
+a.review-title :hover{
+    font-weight: bold;
+    color: #f68a39;
+}
+
+/* End Format sub page */
 
 .transition {
     transition: all 0.8s;

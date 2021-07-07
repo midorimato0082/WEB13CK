@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-md-7 col-lg-7 col-xl-7">
                                 <a href="">
-                                    <h4>{{ $review_cate->review_title }}</h4>
+                                    <a class="review-title" href="{{ URL::to('/review/' . $review_cate->review_slug) }}"><h4>{{ $review_cate->review_title }}</h4></a>
                                 </a>
                                 <p>{{ $review_cate->review_desc }}</p>
                             </div>
@@ -50,13 +50,15 @@
                     @foreach ($lastest_review as $key => $lastest)
                         <div class="ht-right-item">
                             <div class="row " style="padding: 0 16px;">
+                                <a href="{{ URL::to('/review/' . $lastest->review_slug) }}">
                                 @if ($lastest->review_images == 'no_image23.png')
                                     <img class="myimg" src="../server/images/no_image23.png">
                                 @else
                                     <img class="myimg"
                                         src="../uploads/ReviewImage/{{ explode('|', $lastest->review_images)[0] }}">
                                 @endif
-                                <h4>{{ $lastest->review_title }}</h4>
+                            </a>
+                                <a class="review-title" href="{{ URL::to('/review/' . $lastest->review_slug) }}"><h4>{{ $lastest->review_title }}</h4></a>
                                 <p>{{ $lastest->review_desc }}</p>
                             </div>
                         </div>

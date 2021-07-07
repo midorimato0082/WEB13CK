@@ -80,6 +80,9 @@ Route::get('/logout-customer', 'LoginCustomerController@logout_customer');
 //Page Location
 Route::get('/location/{location_slug}', 'HomeController@show_location_page');
 
+//Page Region
+Route::get('/region/{region_slug}', 'HomeController@show_region_page');
+
 //Page Review
 Route::get('/review/{review_slug}', 'HomeController@show_review_page');
 
