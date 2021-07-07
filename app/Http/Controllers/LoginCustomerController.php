@@ -67,14 +67,14 @@ class LoginCustomerController extends Controller
             'customer_email' => 'required',
             'customer_password' => 'required',
             'customer_passwordAgain'=>'required',
-            'customer_avatar'=>'required',
+            
         ],[
             'customer_last_name.required' => 'Tên không được để trống',
             'customer_first_name.required' =>'Tên không được để trống',
             'customer_email.required' => 'Email không được để trống',
             'customer_password.required' => 'Password không được để trống',
             'customer_passwordAgain.required' => 'Nhập lại mật khẩu không được để trống',
-            'customer_avatar.required' => 'Mời chọn ảnh đại diện',
+    
         ]);
         if($data['customer_password'] == $data['customer_passwordAgain']){
             
