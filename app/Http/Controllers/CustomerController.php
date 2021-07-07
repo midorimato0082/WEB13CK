@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use DB;
 use Session;
@@ -191,8 +191,12 @@ class CustomerController extends Controller
         }
         $cus->save();
         Session::put('message', 'Cập nhật tài khoản khách hàng thành công.');
-        return redirect('all-customer');
+        return redirect('profile');
         
+    }
+    public function dangxuat(){
+        Auth::logout();
+        return redirect('/');
     }
     // public function changeprofile(Request $request,$id){
     //     $customerchange = Customer::find($id);

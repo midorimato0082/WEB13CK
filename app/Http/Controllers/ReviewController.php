@@ -12,7 +12,7 @@ use App\Category;
 use App\Location;
 use App\Admin;
 use App\GalleryImage;
-
+use App\Customer;
 session_start();
 
 class ReviewController extends Controller
@@ -32,7 +32,8 @@ class ReviewController extends Controller
         $this->AuthLogin();
         $all_category = Category::where('status', 1)->orderBy('category_name', 'ASC')->get();
         $all_location = Location::where('status', 1)->orderBy('location_name', 'ASC')->get();
-        return view('dashboard.review.add_review', compact('all_category', 'all_location'));
+        $user = Customer::all();
+        return view('dashboard.review.add_review', compact('all_category', 'all_location','user'));
     }
 
     public function save_review(Request $request)

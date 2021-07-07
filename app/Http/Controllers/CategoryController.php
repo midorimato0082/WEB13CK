@@ -9,7 +9,7 @@ use Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Category;
 use App\Review;
-
+use App\Customer;
 session_start();
 
 class CategoryController extends Controller
@@ -39,7 +39,8 @@ class CategoryController extends Controller
     public function all_category(){
         $this->AuthLogin();
         $all_category = Category::orderBy('category_id', 'DESC')->paginate(10);
-        return view('dashboard.category.all_category', compact('all_category'));
+        $user = Customer::all();
+        return view('dashboard.category.all_category', compact('all_category','user'));
     }
 
     public function unactive_category($category_id){

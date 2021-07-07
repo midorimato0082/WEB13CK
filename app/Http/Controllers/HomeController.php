@@ -95,8 +95,8 @@ class HomeController extends Controller
 
         // Show bài viết gần đây nhất
         $lastest_review = Review::where('status', 1)->orderBy('created_at', 'DESC')->take(8)->get();
-  
-        return view('pages.category', compact('all_category', 'all_location', 'all_review_bac', 'all_review_nam', 'category_slug', 'category_name', 'all_review_category', 'lastest_review'));
+        $user = Customer::all();
+        return view('pages.category', compact('all_category', 'all_location', 'all_review_bac', 'all_review_nam', 'category_slug', 'category_name', 'all_review_category', 'lastest_review','user'));
     }
 
     public function show_location_page($location_slug){
@@ -128,8 +128,8 @@ class HomeController extends Controller
 
         // Show bài viết gần đây nhất
         $lastest_review = Review::where('status', 1)->orderBy('created_at', 'DESC')->take(8)->get();
-
-        return view('pages.location', compact('all_category', 'all_location', 'all_review_bac', 'all_review_nam', 'location_slug', 'location_name', 'all_review_location', 'lastest_review'));
+        $user = Customer::all();
+        return view('pages.location', compact('all_category', 'all_location', 'all_review_bac', 'all_review_nam', 'location_slug', 'location_name', 'all_review_location', 'lastest_review','user'));
     }
 
     public function show_region_page($region_slug){
