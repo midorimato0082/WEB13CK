@@ -92,12 +92,18 @@
                             <li class="nav-item">
                                 <a class="user-profile"><img src="../<?php
                                 $avatar = Session::get('customer_avatar');
-                                if ($avatar == 'no_avatar35.png') {
+                                if($avatar) {
+                                    if ($avatar == 'no_avatar35.png') {
                                     echo 'server/images/no_avatar35.png';
                                 } else {
                                     echo 'uploads/CustomerAvatar/';
                                     echo $avatar;
-                                    } ?>">
+                                    }
+                                }
+                                else {
+                                    echo 'server/images/no_login.jpg';
+                                }
+                                 ?>">
                                 </a>
                             </li>
                         </ul>
