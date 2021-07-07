@@ -97,7 +97,6 @@ class LoginCustomerController extends Controller
             $user->customer_last_name = $request->customer_last_name;
             $user->customer_first_name = $request->customer_first_name;
             $user->customer_email = $request->customer_email;
-            $user->customer_avatar = $request->customer_avatar;
             $user->customer_password =md5($request->customer_password);
             $user->save();
             return redirect('dangky')->with('success','Đăng ký thành công');
