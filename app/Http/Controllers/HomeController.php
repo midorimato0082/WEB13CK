@@ -14,7 +14,7 @@ use Carbon\Carbon;
 use App\Category;
 use App\Location;
 use App\Review;
-
+use App\Customer;
 session_start();
 
 class HomeController extends Controller
@@ -61,8 +61,8 @@ class HomeController extends Controller
                 $lastest_review_2[] = $lastest;
             }
         }
-        
-        return view('pages.home', compact('all_category', 'all_location', 'all_review_bac', 'all_review_nam', 'lastest_review_1', 'lastest_review_2','lastest_review'));
+        $user = Customer::all();
+        return view('pages.home', compact('all_category', 'all_location', 'all_review_bac', 'all_review_nam', 'lastest_review_1', 'lastest_review_2','lastest_review','user'));
     }
 
 

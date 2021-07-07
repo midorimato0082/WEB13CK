@@ -78,7 +78,7 @@
 
                     <form class="form-inline my-2 my-lg-0">
                         <ul class="navbar-nav">
-                            <li class="nav-item">
+                            <li class="nav-item" style="margin-top:40px">
                                 <div class="search-box">
                                     <input type="text" placeholder="Từ khóa...">
                                     <div id="search" class="search-btn">
@@ -89,23 +89,37 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{route('login')}}" class="user-profile"><img src="../<?php
-                                $avatar = Session::get('customer_avatar');
-                                if($avatar) {
-                                    if ($avatar == 'no_avatar35.png') {
-                                    echo 'server/images/no_avatar35.png';
-                                } else {
-                                    echo 'uploads/CustomerAvatar/';
-                                    echo $avatar;
-                                    }
-                                }
-                                else {
-                                    echo 'server/images/no_login.jpg';
-                                }
-                                 ?>">
-                                </a>
-                            </li>
+
+                            
+                            <div class="dropdown">
+                                <button class="dropdown-toggle profile-user" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <li class="nav-item">
+                                        <a href="{{route('login')}}" class="user-profile"><img style="width: 100px;
+                                            height: 100px;" src="../<?php
+                                        $avatar = Session::get('customer_avatar');
+                                        if($avatar) {
+                                            if ($avatar == 'no_avatar35.png') {
+                                            echo 'server/images/no_avatar35.png';
+                                        } else {
+                                            echo 'uploads/CustomerAvatar/';
+                                            echo $avatar;
+                                            }
+                                        }
+                                        else {
+                                            echo 'server/images/no_login.jpg';
+                                        }
+                                         ?>">
+                                        </a>
+                                    </li>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" href="{{route('trang-chu')}}">Log out</a>
+                                  @foreach($user as $key =>$value)
+                                  
+                                  @endforeach
+                                  <a class="dropdown-item" href="{{url('profile/'.$value->customer_id)}}">Profile</a>
+                                </div>
+                              </div>
                         </ul>
                     </form>
                 </div>
@@ -206,6 +220,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    @yield('script')
     <!-- wowjs -->
     <script src="../client/Others/lib/WOW-master/wow/wow.min.js"></script>
     <script>

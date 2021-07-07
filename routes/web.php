@@ -14,7 +14,7 @@
 //Client
 Route::get('/','HomeController@index' );
 Route::get('/404','HomeController@error_page');
-Route::get('/trang-chu', 'HomeController@index');
+Route::get('/trang-chu', 'HomeController@index')->name('trang-chu');
 
 //Admin login
 Route::get('/admin', 'LoginController@index');
@@ -38,6 +38,10 @@ Route::get('/edit-customer/{customer_id}', 'CustomerController@edit_customer');
 Route::post('/update-customer/{customer_id}', 'CustomerController@update_customer');
 Route::get('/delete-customer/{customer_id}', 'CustomerController@delete_customer');
 
+
+//Profile
+Route::get('/profile/{id}', 'CustomerController@profile')->name('profile');
+Route::post('/changeprofile/{id}', 'CustomerController@postprofile')->name('changepro');
 //Location
 Route::get('/add-location', 'LocationController@add_location');
 Route::post('/save-location', 'LocationController@save_location');
