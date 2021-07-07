@@ -73,9 +73,14 @@ Route::post('/update-review-image/{review_id}', 'ReviewController@update_review'
 Route::get('/delete-review-image/{review_id}', 'ReviewController@delete_review');
 
 //Customer Login
-Route::get('/login', 'LoginCustomerController@index');
+Route::get('/login', 'LoginCustomerController@index')->name('login');
 Route::post('/pagehome', 'LoginCustomerController@pagehome');
 Route::get('/logout-customer', 'LoginCustomerController@logout_customer');
+
+//Customer Register
+Route::get('dangky','LoginCustomerController@getDangKy');
+Route::post('dangky','LoginCustomerController@postDangKy')->name('dangkycus');
+
 
 //Page Location
 Route::get('/location/{location_slug}', 'HomeController@show_location_page');

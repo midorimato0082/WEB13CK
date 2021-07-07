@@ -26,7 +26,33 @@
 <body>
     <div class="log-w3">
         <div class="w3layouts-main">
-            <h2>KHÁCH HÀNG ĐĂNG NHẬP</h2>
+            <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
+            @if (Session::has('success'))
+                    <div class="alert alert-success">
+                        {{Session::get('success')}}
+                        @php
+                            Session::forget('success');
+                        @endphp
+                    </div>
+                    @endif
+                    @if (Session::has('fail'))
+                    <div class="alert alert-danger">
+                        {{Session::get('fail')}}
+                        @php
+                            Session::forget('fail');
+                        @endphp
+                    </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
             <?php
             $message = Session::get('message');
             if ($message) {
@@ -34,24 +60,25 @@
             Session::put('message', null);
             }
             ?>
-            <form action="{{ URL::to('/pagehome') }}" method="post">
+            <form action="{{route('dangkycus')}}" method="post">
                 {{ csrf_field() }}
                 @foreach ($errors->all() as $val)
                     <ul>
                         <li>{{ $val }}</li>
                     </ul>
                 @endforeach
+                <input type="text" class="ggg" name="customer_last_name" placeholder="Last name" required>
+                <input type="text" class="ggg" name="customer_first_name" placeholder="First name" required>
                 <input type="text" class="ggg" name="customer_email" placeholder="Email" required>
-                <input type="password" class="ggg" name="customer_password" placeholder="Password" required>
-
-                <span><input type="checkbox" />Nhớ đăng nhập</span>
-                <h6><a href="#">Quên mật khẩu</a></h6>
+                <input type="text" class="ggg" name="customer_password" placeholder="Password" required>
+                <input type="text" class="ggg" name="customer_passwordAgain" placeholder="Password again" required>
+                <label for="customer_avatar">Chọn ảnh đại diện</label>
+                <input type="file" class="ggg" id="customer_avatar" name="customer_avatar">
                 <div class="clearfix"></div>
                 <div class="d-flex justify-content-between">
-                    <input type="submit" value="Đăng nhập" name="login">
-                    <a class="btn btn-success registercustomer" href="{{route('dangkycus')}}">Đăng ký</a>
+                    <input type="submit" value="Đăng ký" name="login">
+                    <a class="btn btn-success registercustomer" href="{{route('login')}}">Đăng nhập</a>
                 </div>
-                
 
             </form>
 

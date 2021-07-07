@@ -207,7 +207,7 @@
                         </div>
                         @endforeach
                 </div>
-            
+            {{$lastest_review->links()}}
             {{-- <div class="row mt-2">
                 <div class="col-md-4 col-lg-4 col-xl-4">
                     <a href="">

@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
 use App\Customer;
-
+use File;
+use Validate;
+use Storage;
 session_start();
 
 class LoginCustomerController extends Controller
@@ -52,5 +55,50 @@ class LoginCustomerController extends Controller
         return Redirect::to('/login');
     }
 
-    
+    public function getDangKy(){
+        // $category = Category::all();
+        // $categorynav = CategoryNav::all();
+        return view('pages.dangky');
+    }
+    public function postDangKy(Request $request){
+        $data = $request->validate([
+            'customer_last_name'=>'required',
+            'customer_first_name' => 'required',
+            'customer_email' => 'required',
+            'customer_password' => 'required',
+            'customer_passwordAgain'=>'required',
+            'customer_avatar'=>'required',
+        ],[
+            'customer_last_name.required' => 'Tên không được để trống',
+            'customer_first_name.required' =>'Tên không được để trống',
+            'customer_email.required' => 'Email không được để trống',
+            'customer_password.required' => 'Password không được để trống',
+            'customer_passwordAgain.required' => 'Nhập lại mật khẩu không được để trống',
+            'customer_avatar.required' => 'Mời chọn ảnh đại diện',
+        ]);
+        if($data['customer_password'] == $data['customer_passwordAgain']){
+            
+            $user = new Customer();
+            $image = $data['customer_avatar'];
+            $extention = $image->getClientOriginalExtension();//Lấy đuôi mở rộng của hình ảnh
+            $name = time().'_'.$image->getClientOriginalName();
+            Storage::disk('public/')->put($name,File::get($image));
+            
+            $user->customer_last_name = $request->customer_last_name;
+            $user->customer_first_name = $request->customer_first_name;
+            $user->customer_email = $request->customer_email;
+            $user->customer_avatar = $request->customer_avatar;
+            $user->customer_password =md5($request->customer_password);
+            $user->user_avatar = $name;
+            $user->save();
+            return redirect('dangky')->with('success','Đăng ký thành công');
+            
+        }
+        elseif($data['customer_password'] != $data['customer_passwordAgain']){
+            return redirect('dangky')->with('success','Mật khẩu không trùng khớp');
+        }
+
+        
+        
+    }
 }
