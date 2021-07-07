@@ -162,22 +162,9 @@ class CustomerController extends Controller
         ->where('tbl_review.status', '=', 1)
         ->where('tbl_region.region_name', '=',"Miền Nam")
         ->take(4)->get();
-        // $cus->customer_last_name = $request->customer_last_name;
-        // $cus->customer_first_name = $request->customer_first_name;
-        // $cus->customer_email = $request->customer_email;
-        // if($request->customer_password==$cus->customer_password){
-        //     $cus->customer_password = $request->customer_new_password;
-        // }
-        // else{
-        //     // viết thử 
-        //     return view('pages.profile', compact('all_category', 'all_location', 'all_review_bac', 'all_review_nam','cus','user'));
-        // }
-        
-        // return view('pages.profile', compact('all_category', 'all_location', 'all_review_bac', 'all_review_nam','cus','user'));
         $this->AuthLogin();
 
         $data = $request->all();
-
 
 
         $cus->customer_last_name = $data['customer_last_name'];
@@ -191,7 +178,7 @@ class CustomerController extends Controller
         $get_image = $request->file('customer_avatar');
         if ($get_image) {
             //Xóa ảnh cũ
-            $image_old = $customer->customer_avatar;
+            $image_old = $cus->customer_avatar;
             unlink('uploads/CustomerAvatar/'.$image_old);
 
             //Cập nhật ảnh mới
@@ -202,9 +189,10 @@ class CustomerController extends Controller
 
             $customer->customer_avatar = $new_image;
         }
-        $customer->save();
+        $cus->save();
         Session::put('message', 'Cập nhật tài khoản khách hàng thành công.');
-        return redirect('profile');
+        return redirect('all-customer');
+        
     }
     // public function changeprofile(Request $request,$id){
     //     $customerchange = Customer::find($id);
@@ -221,3 +209,16 @@ class CustomerController extends Controller
     // }
     /* End Phượng */
 }
+
+// $cus->customer_last_name = $request->customer_last_name;
+        // $cus->customer_first_name = $request->customer_first_name;
+        // $cus->customer_email = $request->customer_email;
+        // if($request->customer_password==$cus->customer_password){
+        //     $cus->customer_password = $request->customer_new_password;
+        // }
+        // else{
+        //     // viết thử 
+        //     return view('pages.profile', compact('all_category', 'all_location', 'all_review_bac', 'all_review_nam','cus','user'));
+        // }
+        
+        // return view('pages.profile', compact('all_category', 'all_location', 'all_review_bac', 'all_review_nam','cus','user'));
