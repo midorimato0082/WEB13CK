@@ -70,8 +70,10 @@
                 <input type="text" class="ggg" name="customer_last_name" placeholder="Last name" required>
                 <input type="text" class="ggg" name="customer_first_name" placeholder="First name" required>
                 <input type="text" class="ggg" name="customer_email" placeholder="Email" required>
-                <input type="password" class="ggg" name="customer_password" placeholder="Password" required>
-                <input type="password" class="ggg" name="customer_passwordAgain" placeholder="Password again" required>
+                <input type="text" class="ggg" name="customer_password" placeholder="Password" required>
+                <input type="text" class="ggg" name="customer_passwordAgain" placeholder="Password again" required>
+                <label for="customer_avatar">Chọn ảnh đại diện</label>
+                <input type="file" class="ggg" id="customer_avatar" name="customer_avatar">
                 <div class="clearfix"></div>
                 <div class="d-flex justify-content-between">
                     <input type="submit" value="Đăng ký" name="login">
