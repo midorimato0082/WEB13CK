@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
 use App\Customer;
 
 session_start();
@@ -52,5 +53,33 @@ class LoginCustomerController extends Controller
         return Redirect::to('/login');
     }
 
-    
+    public function getDangKy(){
+        // $category = Category::all();
+        // $categorynav = CategoryNav::all();
+        return view('pages.dangky');
+    }
+    public function postDangKy(Request $request){
+        $data = $request->validate([
+            'customer_last_name'=>'required',
+            'customer_first_name' => 'required',
+            'customer_email' => 'required',
+            'customer_password' => 'required',
+            'customer_passwordAgain'=>'required',
+        ],[
+            'customer_last_name.required' => 'Tên không được để trống',
+            'customer_first_name.required' =>'Tên không được để trống',
+            'customer_email.required' => 'Email không được để trống',
+            'customer_password.required' => 'Password không được để trống',
+            'customer_passwordAgain.required' => 'Nhập lại mật khẩu không được để trống',
+        ]);
+
+        $user = new Customer();
+        $user->customer_last_name = $request->customer_last_name;
+        $user->customer_first_name = $request->customer_first_name;
+        $user->customer_email = $request->customer_email;
+        $user->customer_password =Hash::make($request->customer_password);
+        $user->save();
+        return redirect('dangky')->with('success','Đăng ký thành công');
+        
+    }
 }

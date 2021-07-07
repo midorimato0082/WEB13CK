@@ -51,7 +51,7 @@ class HomeController extends Controller
         ->take(4)->get();
 
         //Lấy bài viết mới nhất
-        $lastest_review = Review::where('status', 1)->orderBy('created_at', 'DESC')->take(6)->get();
+        $lastest_review = Review::where('status', 1)->orderBy('created_at', 'DESC')->take(6)->paginate(6);
         $lastest_review_1 = array();
         $lastest_review_2 = array();
         foreach($lastest_review as $key => $lastest){
@@ -62,7 +62,7 @@ class HomeController extends Controller
             }
         }
         
-        return view('pages.home', compact('all_category', 'all_location', 'all_review_bac', 'all_review_nam', 'lastest_review_1', 'lastest_review_2'));
+        return view('pages.home', compact('all_category', 'all_location', 'all_review_bac', 'all_review_nam', 'lastest_review_1', 'lastest_review_2','lastest_review'));
     }
 
 

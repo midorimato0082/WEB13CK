@@ -90,7 +90,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="user-profile"><img src="../<?php
+                                <a href="{{route('login')}}" class="user-profile"><img src="../<?php
                                 $avatar = Session::get('customer_avatar');
                                 if($avatar) {
                                     if ($avatar == 'no_avatar35.png') {
