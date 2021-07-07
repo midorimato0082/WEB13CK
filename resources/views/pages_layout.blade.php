@@ -61,10 +61,6 @@
                                         class="sr-only">(current)</span></a>
                             </li>
                         @endforeach
-                        <li class="nav-item">
-                            <a class="nav-link" href="./hotel.html">{{ $all_category[1]->category_name }}<span
-                                    class="sr-only">(current)</span></a>
-                        </li>
                         <li class="nav-item dropdown">
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 @foreach ($all_location as $key => $location)
