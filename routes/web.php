@@ -81,7 +81,7 @@ Route::get('/delete-review-image/{review_id}', 'ReviewController@delete_review')
 //Customer Login
 Route::get('/login', 'LoginCustomerController@index')->name('login');
 Route::post('/pagehome', 'LoginCustomerController@pagehome');
-Route::get('/logout-customer', 'LoginCustomerController@logout_customer');
+Route::get('/logout', 'LoginCustomerController@logout')->name('logout');
 
 //Customer Register
 Route::get('dangky','LoginCustomerController@getDangKy');

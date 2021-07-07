@@ -194,10 +194,7 @@ class CustomerController extends Controller
         Session::put('message', 'Cập nhật tài khoản khách hàng thành công.');
 
     }
-    public function dangxuat(){
-        Auth::logout();
-        return redirect('/');
-    }
+  
     // public function changeprofile(Request $request,$id){
     //     $customerchange = Customer::find($id);
     //     $customerchange->customer_last_name = $request->customer_last_name;

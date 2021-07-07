@@ -100,6 +100,7 @@
                                         if($avatar) {
                                             if ($avatar == 'no_avatar35.png') {
                                             echo 'server/images/no_avatar35.png';
+                                            
                                         } else {
                                             echo 'uploads/CustomerAvatar/';
                                             echo $avatar;
@@ -111,14 +112,20 @@
                                          ?>">
                                         </a>
                                     </li>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        @if($avatar)
+                                        <a class="dropdown-item" href="{{route('logout')}}">Log out</a>
+                                        @foreach($user as $key =>$value)
+                                        
+                                        @endforeach
+                                        <a class="dropdown-item" href="{{url('profile/'.$value->customer_id)}}">Profile</a>
+                                      </div>
+                                      @else
+                                        <a class="dropdown-item" href="{{route('login')}}">Đăng nhập</a>
+                                      
+                                    @endif
                                 </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <a class="dropdown-item" href="{{route('trang-chu')}}">Log out</a>
-                                  @foreach($user as $key =>$value)
-                                  
-                                  @endforeach
-                                  <a class="dropdown-item" href="{{url('profile/'.$value->customer_id)}}">Profile</a>
-                                </div>
+                                
                               </div>
                         </ul>
                     </form>

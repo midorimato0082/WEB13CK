@@ -7,6 +7,7 @@ use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Customer;
 use File;
 use Validate;
@@ -48,11 +49,12 @@ class LoginCustomerController extends Controller
     }
 
     public function logout(){
-        $this->AuthLogin();
+        // $this->AuthLogin();
+        Auth::logout();
         Session::put('customer_first_name', null);
         Session::put('customer_id', null);
         Session::put('customer_avatar', null);
-        return Redirect::to('/login');
+        return Redirect::to('/');
     }
 
     public function getDangKy(){
@@ -109,4 +111,8 @@ class LoginCustomerController extends Controller
         
         
     }
+    // public function logout_customer(){
+    //     Auth::logout();
+    //     return redirect('/');
+    // }
 }
