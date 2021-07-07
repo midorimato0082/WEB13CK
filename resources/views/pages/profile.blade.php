@@ -3,6 +3,7 @@
 <div class="container">
     @foreach($user as $key => $value)
     @endforeach
+    @if($value->customer_id == $cus->customer_id)
     <form action="{{ URL::to('/changeprofile'.$value->customer_id) }}" method="post" enctype="multipart/form-data">
         @if (Session::has('success'))
                     <div class="alert alert-success">
@@ -62,6 +63,7 @@
         
         <button type="submit" class="btn btn-primary">Cập nhật</button>
       </form>
+      @endif
 </div>
 
 @endsection
